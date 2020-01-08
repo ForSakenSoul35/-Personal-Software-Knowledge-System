@@ -172,7 +172,96 @@ v-else元素必须紧跟在v-if或者v-else-if后面。<br />使用key来管理 
 
 v-model 会忽略所有表单元素的value，checked，seleceted特性的初始值，总是将Vue实例的数据作为数据来源，应该在data中设置初始值。
 
-对于需要使用输入法的语言，v-model不会在输入法组合文字过程中得到更新，如果想处理这个过程，请使用input事件。（拼写过程中的变化不会做处理）
+对于需要使用输入法的语言，v-model不会在输入法组合文字过程中得到更新，如果想处理这个过程，请使用input事件。（拼写过程中的变化不会做处理）<br />文本框：<br />
+
+```javascript
+<input v-model="message" placeholder ="edit me">
+```
+
+单个复选框
+
+```javascript
+<input type="checkbox" v-model="checked">
+```
+
+多个复选框绑定到同一个数组
+
+```javascript
+<input type="checkbox" v-model="checkedName">
+<input type="checkbox" v-model="checkedName">
+<input type="checkbox" v-model="checkedName">
+<input type="checkbox" v-model="checkedName">
+```
+
+单个单选框
+
+```javascript
+<input type="radio" v-model="picked">
+```
+
+多个单选框<br />同一组的单选框绑定到同一个值
+
+```javascript
+<input type="radio" v-model="picked">
+<input type="radio" v-model="picked">
+```
+
+下拉框<br />单选 下拉框
+```html
+<div id="example-5">
+  <select v-model="selected">
+    <option disabled value="">请选择</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span>Selected: {{ selected }}</span>
+</div>
+```
+
+注意： 如果v-model表达式的初始值未能匹配任何选项，<select>元素将被渲染未选中状态。在iOS中会导致无法选择第一个选项。因此，iOS不会触发change事件，所以推荐提供一个值为空的禁用选项。
+
+多选下拉框<br />通过v-model绑定到同一个数组。<br />
+
+上面描述的都是选中状态的绑定。<br />值的绑定。<br />对于单选按钮，复选框v-model绑定都是静态字符串
+
+```html
+<input type= "radio" v-model="picked" value="a">// 当选中时 picked的值为“a”
+<!-- 当选中第一个选项时，`selected` 为字符串 "abc" -->
+<select v-model="selected">
+  <option value="abc">ABC</option>
+</select>
+
+```
+
+如果想要绑定的值为一个Vue实例上的动态属性，这是可以使用v-bind实现，并且这个值可以不是字符串。
+
+```html
+<input type="radio" v-model="pick" v-bind:value="a">
+// 当选中时
+//vm.pick === vm.a
+
+```
+
+```html
+<select v-model="selected">
+    <!-- 内联对象字面量 -->
+  <option v-bind:value="{ number: 123 }">123</option>
+</select>
+```
+
+```html
+<select v-model="selected">
+    <!-- 内联对象字面量 -->
+  <option v-bind:value="{ number: 123 }">123</option>
+</select>
+// 当选中时
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
+```
+
+修饰符<br />.lazy 在默认情况下 v-model 在每次input事件触发之后会将输入框的值与数据进行同步。可以添加.lazy修饰符。从而改变使用change事件进行同步。<br />.number 自动将用户的值转为数值类型，可以给v-model添加number修饰符。<br />.trim 自动过滤用户输入的首尾空白字符。
+
 <a name="xo1nJ"></a>
 #### v-html
 双大括号（插值表达式）会将数据解释为普通文本，而非HTML代码（不会解析HTML）。为了输出真正的HTML，需要使用v-html指令。
@@ -180,6 +269,8 @@ v-model 会忽略所有表单元素的value，checked，seleceted特性的初始
 ```html
 <p>Using v-html <span v-html="rawHtml"></span> </p>
 // rawHtml 为一段html代码
+
+
 ```
 
 **注意：**
