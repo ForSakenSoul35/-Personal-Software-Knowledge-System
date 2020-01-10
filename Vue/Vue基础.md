@@ -1,4 +1,4 @@
-# Vue基础
+# Vue基础 (一) Vue实例
 
 <a name="vmy7W"></a>
 # Vue实例
@@ -41,7 +41,7 @@ el选项 表示这个Vue实例接管的DOM节点区域。
 <a v-bind:href="url"></a>
 // 这里href是参数，告知v-bind指令 该元素的href特性和 Vue实例的数据对象上的url属性的值 绑定。
 ```
- <br />又比如v-on指令，用于监听DOM事件。
+ <br />又比如v-on指令，用于监听DOM事件。
 
 ```html
 <a v-on:click ="doSomething"></a>
@@ -57,7 +57,7 @@ el选项 表示这个Vue实例接管的DOM节点区域。
 **修饰符**<br />修饰符是以半角句号指明的特殊后缀，用于指出一个指令应该以特殊的方式绑定。
 <a name="COble"></a>
 #### v-bind 属性绑定
-缩写： v-bind:class  => :class<br />v-bind用于绑定HTML属性。<br />最简单的使用：
+缩写： v-bind:class  => :class<br />v-bind用于绑定HTML属性。<br />最简单的使用：
 
 ```html
 <div v-bind:title ="titleName"></div>
@@ -69,7 +69,7 @@ el选项 表示这个Vue实例接管的DOM节点区域。
   ...
 </script>
 ```
- <br />语法格式： v-bind:class ="classProperty"<br />除了接收字符串类型的变量，还支持单一JavaScript表达式。<br />可以进行简单的运算，执行函数等。<br />除了接收字符串的变量，还支持其他的数据类型作为classProperty<br />接收为对象类型时，会自动调用对象的toString（）方法，并将值作为classProperty。<br />接收为数组类型时，会自动执行arr.join()方法。<br />基于上面的情况。Vue对class和style这两个html属性进行了一定程度的增强。<br />当检测到obj的某个属性值为真时，则将这个属性的属性值添加到绑定元素的class上。
+ <br />语法格式： v-bind:class ="classProperty"<br />除了接收字符串类型的变量，还支持单一JavaScript表达式。<br />可以进行简单的运算，执行函数等。<br />除了接收字符串的变量，还支持其他的数据类型作为classProperty<br />接收为对象类型时，会自动调用对象的toString（）方法，并将值作为classProperty。<br />接收为数组类型时，会自动执行arr.join()方法。<br />基于上面的情况。Vue对class和style这两个html属性进行了一定程度的增强。<br />当检测到obj的某个属性值为真时，则将这个属性的属性值添加到绑定元素的class上。
 
 对象语法：<br />classProperty接收一个对象。<br />当对象的某个属性值为true时，会将对应的属性名添加到元素对应的class列表中。
 ```html
@@ -130,8 +130,8 @@ data: {
 Vue.js还会自动侦测 并添加对应的前缀
 
 <a name="BGWaF"></a>
-#### v-on  事件处理
-缩写 @click
+#### v-on  事件处理
+缩写 @click
 
 监听DOM事件，并在触发时运行一些代码<br />事件修饰符<br />修饰符是由点开头的指令后缀来表示的。
 
@@ -140,16 +140,16 @@ Vue.js还会自动侦测 并添加对应的前缀
 - .capture 内部元素触发的事件 先在这里处理，再交由内部元素处理
 - .self 即事件不是从内部元素触发的
 - .once 点击事件只会触发一次
-- .passive 
+- .passive 
 <a name="eCtMA"></a>
 #### v-for 列表渲染
-可以使用v-for指令基于一个数组来渲染一个列表<br />v-for指令需要使用 item  in items的形式。<br />在v-for块中，可以访问所有父作用域的属性。<br />也可以使用v-for遍历对象，可以提供第二个参数 键名 name，第三个参数 index 索引。<br />遍历对象时，会按Object.keys（）的结果遍历。
+可以使用v-for指令基于一个数组来渲染一个列表<br />v-for指令需要使用 item  in items的形式。<br />在v-for块中，可以访问所有父作用域的属性。<br />也可以使用v-for遍历对象，可以提供第二个参数 键名 name，第三个参数 index 索引。<br />遍历对象时，会按Object.keys（）的结果遍历。
 
 注意：<br />当Vue正在更新v-for渲染的元素列表时，默认使用 就地更新 的策略。 如果数据源的顺序被改变，Vue将不会移动DOM元素来匹配数据项的顺序。而是 就地更新。<br />为了跟踪每个节点的身份，从而重用和重新排序现有的元素，需要为每项提供一个唯一的key值。
 
 <a name="OuuZw"></a>
 #### v-if 条件渲染
-v-if 
+v-if 
 ```javascript
 <h1 v-if="ok">Yes</h1>
 <h1 v-else>No</h1>
@@ -291,12 +291,12 @@ created方法是Vue实例自带的方法，属于Vue实例的生命周期方法�
 - beforeMount
   - 创建vm.$el 替换 el
 - mounted
-  - 挂载完毕 
+  - 挂载完毕 
   - 当data被修改后，虚拟DOM重新更新之前
 - beforeUpdate
   - 虚拟DOM更新之后
 - updated
-  - 执行vm.$destroy 
+  - 执行vm.$destroy 
   - 解除绑定 销毁子组件之以及事件监听器之前
 - beforeDestroy
   - 销毁完毕
@@ -323,13 +323,13 @@ var vm = new Vue({
 })
 ```
 
-我们这里声明了一个计算属性 reverseMessage， 提供的函数将用作属性 vm.reverseMessage  的 getter函数。
+我们这里声明了一个计算属性 reverseMessage， 提供的函数将用作属性 vm.reverseMessage  的 getter函数。
 
 **Vue知道vm.reverseMessage依赖于message，当message发生变化时，所有依赖vm.reverseMessage的绑定也会更新。**
 
 <a name="Zeu6u"></a>
 ### 计算属性和方法
-我们也可以将vm.reverseMessage 对应的函数写在methods方法中，然后在插值表达式调用这个方法，也能得到对应的值。<br />不同的是，计算属性是基于它们的响应依赖进行缓存的。只在相关响应式依赖发生变化时它们才会重新求值，而方法每次都会执行。<br />如果不希望有缓存的效果，请使用方法代替。
+我们也可以将vm.reverseMessage 对应的函数写在methods方法中，然后在插值表达式调用这个方法，也能得到对应的值。<br />不同的是，计算属性是基于它们的响应依赖进行缓存的。只在相关响应式依赖发生变化时它们才会重新求值，而方法每次都会执行。<br />如果不希望有缓存的效果，请使用方法代替。
 <a name="RlTBm"></a>
 ## watch
 Vue提供了一种更通用的方法来观察和响应Vue实例上的数据改动: 侦听属性，也就是watch。<br />当你有一些数据需要随着其他数据变动，很容易滥用watch。<br />通常更好的做法是使用计算属性而不是命令式watch的回调。
@@ -376,9 +376,3 @@ computed: {
 虽然计算属性在大多数情况下比较合适，但有时候也需要一个自定义的侦听器。这就是为什么Vue通过watch选项提供一个更通用的方法，来响应数据的变化。<br />**当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。**
 
 使用watch选项 允许我们执行异步操作，限制我们执行该操作的频率，并且在我们得到最终结果之前，设置中间状态，这些都是计算属性无法做到的。
-
-
-
-
-
-
