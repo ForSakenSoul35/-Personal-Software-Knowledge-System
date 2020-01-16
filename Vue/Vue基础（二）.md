@@ -18,7 +18,6 @@
 ```javascript
 Vue.component('my-component',{ 
   // ...options
-  //
 })
 ```
 
