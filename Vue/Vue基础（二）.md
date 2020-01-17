@@ -36,6 +36,7 @@ Vue.component('my-component',{
 ```javascript
 Vue.component('my-component-name',{
 	// ..options
+  //
 })
 ```
 
